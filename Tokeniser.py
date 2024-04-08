@@ -13,7 +13,7 @@ RIGHT_SQUARE_BRACKET = 'RIGHT-SQUARE-BRACKET'
 EOF = 'EOF'
 HOME = 'HOME'
 PEN_UP = 'PEN-UP'
-PEN_DOWN = 'PEN_DOWN'
+PEN_DOWN = 'PEN-DOWN'
 REPEAT = 'REPEAT'
 
 class Token():
@@ -31,6 +31,11 @@ class Token():
         return self.__str__()
     
 class Lexer():
+    
+    def print_error(self):
+        print("Lexical Error!")
+        quit()
+        
     def __init__(self, text, debug_mode):
         self.text = text
         self.index = 0
@@ -63,16 +68,14 @@ class Lexer():
         if self.curr_char == 'd':
             self.next_char()
             return "fd"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
     
     def backward(self):
         self.next_char()
         if self.curr_char == 'k':
             self.next_char()
             return "bk"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
         
     def turn1(self):
         result = self.curr_char
@@ -80,8 +83,7 @@ class Lexer():
         if self.curr_char == 't':
             self.next_char()
             return result + 't'
-        print("Invalid Token!")
-        quit()
+        self.print_error()
     
     def home(self):
         result = self.curr_char
@@ -94,16 +96,14 @@ class Lexer():
         self.next_char()
         if result == "home":
             return "home"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
     
     def penup(self):
         self.next_char()
         if self.curr_char == 'p':
             self.next_char()
             return "penup"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
     
     def pendown(self):
         result = self.curr_char
@@ -116,8 +116,7 @@ class Lexer():
         self.next_char()
         if result == "down":
             return "pendown"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
         
     
     def repeat(self):
@@ -133,8 +132,7 @@ class Lexer():
         self.next_char()
         if result == "repeat":
             return "repeat"
-        print("Invalid Token!")
-        quit()
+        self.print_error()
                 
     def get_next_token(self):
         while self.curr_char is not None:
@@ -166,18 +164,15 @@ class Lexer():
                     if self.curr_char == 'n':
                         self.next_char()
                     else: 
-                        print("Invalid Token!")
-                        quit()
+                        self.print_error()
                 else: 
-                    print("Invalid Token")
-                    quit()                
+                    self.print_error()                
                 if self.curr_char == 'u':
                     return Token(PEN_UP, self.penup())
                 elif self.curr_char == 'd':
                     return Token(PEN_DOWN, self.pendown())
                 else:
-                    print("Invalid Token!")
-                    quit()
+                    self.print_error()
             
             if self.curr_char == 'r':
                 self.next_char()
@@ -194,8 +189,7 @@ class Lexer():
                 self.next_char()
                 return Token(RIGHT_SQUARE_BRACKET, ']')            
             
-            print('Lexical Error! Input symbol not found.')
-            quit()
+            self.print_error()
         
         return Token(EOF, None)
         
