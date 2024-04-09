@@ -1,0 +1,18 @@
+S -> repeat K [S] S   0
+S -> fd K S           1
+S -> rt K S           2
+S -> ut K S           3
+S -> dt K S           4
+S -> bk K S           5
+S -> lt K S           6
+S -> home S           7
+S -> penup S          8
+S -> pendown S        9
+S -> #                10
+K -> id               11
+
+    repeat     fd     bk     rt     ut     lt    dt   home     penup     pendown      id      [    ]     ?
+
+S     0        1      5      2      3      6     4     7        8          9           -      -    10    10
+
+K                                                                                     11

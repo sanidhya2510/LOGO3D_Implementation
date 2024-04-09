@@ -20,4 +20,9 @@ repeat 5 [
 ]
 
 home
-homie
+penup
+penup
+pendown 
+repeat 76 [
+    
+]
