@@ -103,11 +103,11 @@ if __name__ == "__main__":
     text = ''.join(lines)
     text = text.lower()
     lexer = Lexer(text, debug_mode)
-    lexer2 = lexer
-    # curr_token = lexer.get_next_token()
-    # while curr_token.type is not EOF:
-    #     print(curr_token)
-    #     curr_token = lexer.get_next_token()
+    lexer2 = Lexer(text, debug_mode)
+    curr_token = lexer2.get_next_token()
+    while curr_token.type is not EOF:
+        print(curr_token)
+        curr_token = lexer2.get_next_token()
     parser = Parser(lexer)
     parser.parse()
                 

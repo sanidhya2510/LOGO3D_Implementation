@@ -1,28 +1,10 @@
-fd 4
-rt 5
-rt 99
-rt 46
-
-repeat 5 [
-    home 
-    fd 437
-    rt 11
-    ut 13
-    repeat 11 [
-        bk 12
-        penup
-        fd 14
-        pendown
-        dt 11
-        lt 11
-        home
-    ]
-]
-
-home
+fd 437
+rt 11
+ut 13
 penup
-penup
-pendown 
-repeat 76 [
-    
-]
+fd 14
+pendown
+dt 11
+15 lt
+repeat
+
