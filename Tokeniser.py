@@ -209,7 +209,7 @@ if __name__ == "__main__":
     text = text.lower()
     lexer = Lexer(text, debug_mode)
     curr_token = lexer.get_next_token()
-    while curr_token.type is not None:
+    while curr_token.type is not EOF:
         print(curr_token)
         curr_token = lexer.get_next_token()
     # print(lexer)

@@ -95,7 +95,7 @@ class Parser:
             
 
 if __name__ == "__main__":
-    print(parsing_table[("S", FORWARD)][1][1])
+    # print(parsing_table[("S", FORWARD)][1][1])
     lines = ""
     debug_mode = False
     with open("input.lgo") as f:
