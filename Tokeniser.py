@@ -151,8 +151,14 @@ class Lexer():
             if self.curr_char == 'b':
                 return Token(BACKWARD, self.backward())
             
-            if self.curr_char == 'd' or self.curr_char == 'u' or self.curr_char == 'l':
-                return Token(BACKWARD, self.turn1())
+            if self.curr_char == 'd':
+                return Token(DOWN_ROTATION, self.turn1())
+
+            if self.curr_char == 'u':
+                return Token(UP_ROTATION, self.turn1())
+
+            if self.curr_char == 'l':
+                return Token(LEFT_ROTATION, self.turn1())
             
             if self.curr_char == 'h':
                 return Token(HOME, self.home())
