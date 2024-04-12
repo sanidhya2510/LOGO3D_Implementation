@@ -40,14 +40,14 @@ class Lexer():
         self.text = text
         self.index = 0
         self.curr_token = None
-        self.curr_char = self.text[self.index]
+        self.curr_char = self.text[self.index].lower()
         
     def next_char(self):
         self.index = self.index + 1
         if self.index > len(self.text) - 1:
             self.curr_char = None
         else:
-            self.curr_char = self.text[self.index]
+            self.curr_char = self.text[self.index].lower()
             
     def floating_point(self):
         result = ' '
@@ -151,8 +151,14 @@ class Lexer():
             if self.curr_char == 'b':
                 return Token(BACKWARD, self.backward())
             
-            if self.curr_char == 'd' or self.curr_char == 'u' or self.curr_char == 'l':
-                return Token(BACKWARD, self.turn1())
+            if self.curr_char == 'd':
+                return Token(DOWN_ROTATION, self.turn1())
+
+            if self.curr_char == 'u':
+                return Token(UP_ROTATION, self.turn1())
+
+            if self.curr_char == 'l':
+                return Token(LEFT_ROTATION, self.turn1())
             
             if self.curr_char == 'h':
                 return Token(HOME, self.home())
@@ -203,7 +209,7 @@ if __name__ == "__main__":
     text = text.lower()
     lexer = Lexer(text, debug_mode)
     curr_token = lexer.get_next_token()
-    while curr_token.type is not None:
+    while curr_token.type is not EOF:
         print(curr_token)
         curr_token = lexer.get_next_token()
     # print(lexer)
