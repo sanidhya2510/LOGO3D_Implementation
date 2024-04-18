@@ -136,8 +136,8 @@ class Lexer():
                 
     def get_next_token(self):
         while self.curr_char is not None:
-            if self.curr_char == ' ' or self.curr_char == '\n':
-                while self. curr_char is not None and (self. curr_char == ' ' or self.curr_char == '\n'):
+            if self.curr_char == ' ':
+                while self. curr_char is not None and (self. curr_char == ' '):
                     self.next_char()
                 continue
             
@@ -207,6 +207,7 @@ if __name__ == "__main__":
             lines = f.readlines()
     text = ''.join(lines)
     text = text.lower()
+    text = ' '.join(text.split())
     lexer = Lexer(text, debug_mode)
     curr_token = lexer.get_next_token()
     while curr_token.type is not EOF:

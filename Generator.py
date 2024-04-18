@@ -4,8 +4,6 @@ from Head import Head
 def generate_moves(lexer, sequence, temp_sequence, head, debug_mode):
     token = lexer.get_next_token()
     while(token.type != EOF):
-        if token.type == RIGHT_SQUARE_BRACKET:
-            return
         if token.type == PEN_UP:
             head.pendown = False
             sequence.append(temp_sequence)
@@ -56,9 +54,20 @@ def generate_moves(lexer, sequence, temp_sequence, head, debug_mode):
         elif token.type == REPEAT:
             token = lexer.get_next_token()
             count = token.value
-            lexer.get_next_token()
+            text = ''
+            token = lexer.get_next_token()
+            token = lexer.get_next_token()
+            counter = 1
+            while counter != 0:
+                text = text + str(token.value)
+                token = lexer.get_next_token()
+                if token.type == LEFT_SQUARE_BRACKET: counter = counter + 1
+                if token.type == RIGHT_SQUARE_BRACKET: counter = counter - 1
+            # print(text)
+            
             while count:
-                generate_moves(lexer, sequence, temp_sequence, head, debug_mode)
+                new_lexer = Lexer(text, False)
+                generate_moves(new_lexer, sequence, temp_sequence, head, debug_mode)
                 count = count - 1
         token = lexer.get_next_token()
 

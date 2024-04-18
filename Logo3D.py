@@ -65,6 +65,7 @@ def parse_args(argv):
 def main():
     (filename, debug_mode, (rot_angle, rot_x, rot_y, rot_z)) = parse_args(sys.argv)
     text = read_from_file(filename)
+    text = ' '.join(text.split())
     lexer = Lexer(text, debug_mode)
     parser = Parser(lexer)
     parser.parse()

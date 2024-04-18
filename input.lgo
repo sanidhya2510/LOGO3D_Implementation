@@ -1,28 +1,33 @@
-<<<<<<< HEAD
-FD 2
-UT 90
-FD 2
-UT 90
-FD 2
-LT 90
-FD 2
-LT 90
-FD 2
-UT 90
-FD 2
-UT 90
-FD 2
+FD 1
 RT 90
-FD 2
-=======
-fd 437
-rt 11
-ut 13
-penup
-fd 14
-pendown
-dt 11
-15 lt
-repeat
+FD 1
+LT 90
+FD 1
+HOME
 
->>>>>>> b8052bc9be4579819d279d665443d0c7f5ee364f
+rt 90
+
+FD 1
+RT 90
+FD 1
+LT 90
+FD 1
+HOME
+
+rt 180
+
+FD 1
+RT 90
+FD 1
+LT 90
+FD 1
+HOME
+
+rt 270
+
+FD 1
+RT 90
+FD 1
+LT 90
+FD 1
+HOME
