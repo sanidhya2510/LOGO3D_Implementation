@@ -36,7 +36,7 @@ class Lexer():
         print("Lexical Error!")
         quit()
         
-    def __init__(self, text, debug_mode):
+    def __init__(self, text):
         self.text = text
         self.index = 0
         self.curr_token = None
@@ -202,13 +202,12 @@ class Lexer():
 
 if __name__ == "__main__":
     lines = ""
-    debug_mode = False
     with open("input.lgo") as f:
             lines = f.readlines()
     text = ''.join(lines)
     text = text.lower()
     text = ' '.join(text.split())
-    lexer = Lexer(text, debug_mode)
+    lexer = Lexer(text)
     curr_token = lexer.get_next_token()
     while curr_token.type is not EOF:
         print(curr_token)

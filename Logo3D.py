@@ -12,7 +12,6 @@ from Generator import *
 def usage():
     print("Usage:")
     print("python Logo3D.py source-file [options]")
-    print("       [options] - /d         (debug mode)")
     print("       [options] - /r a:x:y:z (rotate at angle 'a' around '(x,y,z)')")
     print("                              (defaults to 1:1:1:1)")
     print()
@@ -32,14 +31,11 @@ def parse_args(argv):
     if (len(argv) < 2):
         usage()
     filename = argv[1]
-    debug_mode = False
     (rot_angle, rot_x, rot_y, rot_z) = (1, 1, 1, 1)
 
     i = 2
     while (i < len(argv)):
-        if (argv[i] == "/d"):
-            debug_mode = True
-        elif (argv[i] == "/r"):
+        if (argv[i] == "/r"):
             i += 1
             if (i == len(argv)):
                 print("Expected additional value after '/r'")
@@ -60,18 +56,26 @@ def parse_args(argv):
             print(f"{argv[i]} is an unknown parameter")
             os._exit(1)
         i += 1
-    return (filename, debug_mode, (rot_angle, rot_x, rot_y, rot_z))
+    return (filename, (rot_angle, rot_x, rot_y, rot_z))
 
 def main():
-    (filename, debug_mode, (rot_angle, rot_x, rot_y, rot_z)) = parse_args(sys.argv)
+    (filename, (rot_angle, rot_x, rot_y, rot_z)) = parse_args(sys.argv)
     text = read_from_file(filename)
     text = ' '.join(text.split())
-    lexer = Lexer(text, debug_mode)
+    lexer = Lexer(text)
+    
+    test_lexer = Lexer(text)
+    curr_token = test_lexer.get_next_token()
+    
+    print("Tokens are as follows:")
+    while curr_token.type is not EOF:
+        print(curr_token)
+        curr_token = test_lexer.get_next_token()
+        
     parser = Parser(lexer)
     parser.parse()
-    get_tokens = Lexer(text, debug_mode)
-    all_pos_sequences = generate(get_tokens, debug_mode)
-    
+    get_tokens = Lexer(text)
+    all_pos_sequences = generate(get_tokens)
     pg.init()
     display = (1300, 800)
     pg.display.set_mode(display, DOUBLEBUF|OPENGL)

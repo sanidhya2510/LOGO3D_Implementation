@@ -1,5 +1,5 @@
 from Tokeniser import *
-
+import copy
 #parsing table -> ll(1)
 
 parsing_table = dict()
@@ -70,6 +70,11 @@ class Parser:
         # self.curr_token = self.lexer.get_next_token()
         # print(self.curr_token.type)
         while not (stack.peek() == EOF and self.curr_token.type == EOF):
+            # stack2 = copy.deepcopy(stack)
+            # while stack2.peek() != None:
+            #     print(stack2.peek(), end = " ")
+            #     stack2.pop()
+            # print()
             if stack.peek() == "S":
                 if parsing_table[("S", self.curr_token.type)] is not None:
                     stack.pop()
@@ -97,13 +102,12 @@ class Parser:
 if __name__ == "__main__":
     # print(parsing_table[("S", FORWARD)][1][1])
     lines = ""
-    debug_mode = False
     with open("input.lgo") as f:
             lines = f.readlines()
     text = ''.join(lines)
     text = text.lower()
-    lexer = Lexer(text, debug_mode)
-    lexer2 = Lexer(text, debug_mode)
+    lexer = Lexer(text)
+    lexer2 = Lexer(text)
     curr_token = lexer2.get_next_token()
     while curr_token.type is not EOF:
         print(curr_token)

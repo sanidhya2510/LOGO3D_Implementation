@@ -1,7 +1,7 @@
 from Parser import *
 from Head import Head
 
-def generate_moves(lexer, sequence, temp_sequence, head, debug_mode):
+def generate_moves(lexer, sequence, temp_sequence, head):
     token = lexer.get_next_token()
     while(token.type != EOF):
         if token.type == PEN_UP:
@@ -67,37 +67,36 @@ def generate_moves(lexer, sequence, temp_sequence, head, debug_mode):
             # print(text)
             
             while count:
-                new_lexer = Lexer(text, False)
-                generate_moves(new_lexer, sequence, temp_sequence, head, debug_mode)
+                new_lexer = Lexer(text)
+                generate_moves(new_lexer, sequence, temp_sequence, head)
                 count = count - 1
         token = lexer.get_next_token()
 
-def generate(lexer, debug_mode):
+def generate(lexer):
     head = Head()
     sequence = []
     temp_sequence = []
-    generate_moves(lexer, sequence, temp_sequence, head, debug_mode)
+    generate_moves(lexer, sequence, temp_sequence, head)
     sequence.append(temp_sequence)
     
     return sequence
 
 if __name__ == "__main__":
     lines = ""
-    debug_mode = False
     with open("input.lgo") as f:
             lines = f.readlines()
     text = ''.join(lines)
     text = text.lower()
-    lexer = Lexer(text, debug_mode)
-    lexer2 = Lexer(text, debug_mode)
-    lexer3 = Lexer(text, debug_mode)
+    lexer = Lexer(text)
+    lexer2 = Lexer(text)
+    lexer3 = Lexer(text)
     parser = Parser(lexer)
     parser.parse()
     curr_token = lexer2.get_next_token()
     while curr_token.type is not EOF:
         print(curr_token)
         curr_token = lexer2.get_next_token()
-    sequence = generate(lexer3, debug_mode)
+    sequence = generate(lexer3)
     print(sequence)
     print(len(sequence[0]))
             
