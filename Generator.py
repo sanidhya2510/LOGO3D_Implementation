@@ -13,6 +13,7 @@ def generate_moves(lexer, sequence, temp_sequence, head, debug_mode):
         elif token.type == HOME:
             head.x = 0
             head.y = 0
+            head.z = 0
             head.horizontal_angle = 0
             head.vertical_angle = 0
         elif token.type == FORWARD:
