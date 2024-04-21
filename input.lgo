@@ -1,4 +1,0 @@
-repeat 4 [
-    fd 3
-    rt 90
-]

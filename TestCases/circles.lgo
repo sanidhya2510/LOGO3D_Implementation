@@ -1,0 +1,16 @@
+REPEAT 36 [
+    FD 0.3
+    UT 10
+]
+REPEAT 36 [
+    FD 0.3
+    RT 10
+]
+REPEAT 36 [
+    FD 0.3
+    DT 10
+]
+REPEAT 36 [
+    FD 0.3
+    DT 10
+]
