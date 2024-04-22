@@ -1,15 +1,43 @@
-FD 2
+REPEAT 4 [
+    FD 2
+    RT 90
+]
+
 UT 90
 FD 2
-UT 90
+DT 90
 FD 2
-LT 90
+DT 90
 FD 2
-LT 90
-FD 2
-UT 90
-FD 2
-UT 90
+
+HOME
 FD 2
 RT 90
+FD 2
+
+UT 90
+FD 2
+UT 90
+FD 2
+UT 90
+FD 2
+
+HOME
+RT 90
+FD 2
+
+UT 90
+FD 2
+UT 90
+FD 2
+UT 90
+FD 2
+
+HOME
+RT 90
+FD 2
+UT 90
+FD 2
+DT 90
+LT 90
 FD 2

@@ -1,0 +1,6 @@
+REPEAT 5 [
+    FD 0.5
+    PENUP 
+    FD 0.5
+    PENDOWN
+]
